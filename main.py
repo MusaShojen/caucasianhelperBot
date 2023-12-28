@@ -45,11 +45,11 @@ def callback_handler(call):
     if call.data == 'chat1':
         TARGET_CHAT_ID = '@kafkazist'
     elif call.data == 'chat2':
-        TARGET_CHAT_ID = '@kavkazsausia'
+        TARGET_CHAT_ID = '@kavkazsaudia'
     elif call.data == 'chat3':
-        TARGET_CHAT_ID = '@kavkazeurope'
-    elif call.data == 'chat4':
         TARGET_CHAT_ID = '@kavkasdubai'
+    elif call.data == 'chat4':
+        TARGET_CHAT_ID = '@kavkazeurope'
 
     bot.send_message(call.message.chat.id, f'Целевой чат установлен: {TARGET_CHAT_ID}')
 @bot.message_handler(func=lambda message: True)
