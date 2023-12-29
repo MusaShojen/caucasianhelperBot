@@ -65,15 +65,14 @@ def callback_handler(call):
 @bot.message_handler(func=lambda message: True)
 def duplicate_and_send(message):
     if message.chat.type == "private":
-        # Подготовка текста для дублирования с префиксом
-        duplicated_text = f"Анонимное сообщение: {message.text}"
-
-        # Отправка дублированного сообщения в тот же чат, откуда было получено
-        # bot.send_message(message.chat.id, duplicated_text)
-
-        # Отправка сообщения в целевой чат
+        # Личное сообщение
+        duplicated_text = f"Анонимное сообщение (личное): {message.text}"
         bot.send_message(TARGET_CHAT_ID, duplicated_text)
 
+        # Условие наличия chat.type == "group", "supergroup" или "channel" можно убрать,
+        # чтобы дать боту игнорировать все другие типы чатов
+    elif message.chat.type == "group" or message.chat.type == "supergroup" or message.chat.type == "channel":
+        pass  # Ничего не отправлять для групп, супергрупп и каналов
 
 bot.polling(non_stop=True)
 
