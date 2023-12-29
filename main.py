@@ -37,7 +37,7 @@ def send(message):
     bot.send_message(message.chat.id, send_message, reply_markup=markup)
 
 
-@bot.message_handler(func=lambda message: message.chat.type == 'private')
+@bot.callback_query_handler(func=lambda call: True)
 def callback_handler(call):
     global TARGET_CHAT_ID
 
@@ -52,7 +52,7 @@ def callback_handler(call):
         TARGET_CHAT_ID = '@kavkazeurope'
 
     bot.send_message(call.message.chat.id, f'Целевой чат установлен: {TARGET_CHAT_ID}')
-@bot.message_handler(func=lambda message: True)
+@bot.message_handler(func=lambda message: message.chat.type == 'private')
 def duplicate_and_send(message):
     # Подготовка текста для дублирования с префиксом
     duplicated_text = f"Анонимное сообщение: {message.text}"
