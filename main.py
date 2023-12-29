@@ -67,7 +67,7 @@ def callback_handler(call):
 def duplicate_and_send(message):
     if message.chat.type == "private":
         # Личное сообщение
-        duplicated_text = f"Анонимное сообщение (личное): {message.text}"
+        duplicated_text = f"Анонимное сообщение : {message.text}"
         bot.send_message(TARGET_CHAT_ID, duplicated_text)
 
         # Условие наличия chat.type == "group", "supergroup" или "channel" можно убрать,
