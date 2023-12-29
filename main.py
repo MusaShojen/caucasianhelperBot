@@ -37,7 +37,7 @@ def send(message):
     bot.send_message(message.chat.id, send_message, reply_markup=markup)
 
 
-@bot.callback_query_handler(func=lambda call: True)
+@bot.message_handler(func=lambda message: message.chat.type == 'private')
 def callback_handler(call):
     global TARGET_CHAT_ID
 
