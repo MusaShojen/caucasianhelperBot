@@ -52,7 +52,16 @@ def callback_handler(call):
         TARGET_CHAT_ID = '@kavkazeurope'
 
     bot.send_message(call.message.chat.id, f'Целевой чат установлен: {TARGET_CHAT_ID}')
-@bot.message_handler(func=lambda message: message.chat.type == 'private')
+# @bot.message_handler(func=lambda message: True)
+#
+#
+# if message.chat.type == "private"
+#     # private chat message
+# else:
+#     # non-private chat message
+#
+# bot.polling(non_stop=True)
+@bot.message_handler(func=lambda message: True if message.chat.type == "private" else False)
 def duplicate_and_send(message):
     # Подготовка текста для дублирования с префиксом
     duplicated_text = f"Анонимное сообщение: {message.text}"
@@ -62,8 +71,6 @@ def duplicate_and_send(message):
 
     # Отправка сообщения в целевой чат
     bot.send_message(TARGET_CHAT_ID, duplicated_text)
-bot.polling(non_stop=True)
-
 
 
 
