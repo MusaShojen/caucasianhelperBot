@@ -72,6 +72,7 @@ def duplicate_and_send(message):
     # Отправка сообщения в целевой чат
     bot.send_message(TARGET_CHAT_ID, duplicated_text)
 
+bot.polling(non_stop=True)
 
 
 # import logging
