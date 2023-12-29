@@ -1,6 +1,7 @@
 
 import telebot
 from telebot import types
+
 from dotenv import load_dotenv
 import os
 
@@ -61,16 +62,18 @@ def callback_handler(call):
 #     # non-private chat message
 #
 # bot.polling(non_stop=True)
-@bot.message_handler(func=lambda message: True if message.chat.type == "private" else False)
+@bot.message_handler(func=lambda message: True)
 def duplicate_and_send(message):
-    # Подготовка текста для дублирования с префиксом
-    duplicated_text = f"Анонимное сообщение: {message.text}"
+    if message.chat.type == "private":
+        # Подготовка текста для дублирования с префиксом
+        duplicated_text = f"Анонимное сообщение: {message.text}"
 
-    # Отправка дублированного сообщения в тот же чат, откуда было получено
-    # bot.send_message(message.chat.id, duplicated_text)
+        # Отправка дублированного сообщения в тот же чат, откуда было получено
+        # bot.send_message(message.chat.id, duplicated_text)
 
-    # Отправка сообщения в целевой чат
-    bot.send_message(TARGET_CHAT_ID, duplicated_text)
+        # Отправка сообщения в целевой чат
+        bot.send_message(TARGET_CHAT_ID, duplicated_text)
+
 
 bot.polling(non_stop=True)
 
